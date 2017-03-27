@@ -1,0 +1,24 @@
+{
+    "name": "robinvdvleuten/lazy-event-dispatcher",
+    "description": "An event dispatcher that holds any events until flushed.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Robin van der Vleuten",
+            "email": "robin@webstronauts.co"
+        }
+    ],
+    "homepage" : "https://github.com/robinvdvleuten/php-lazy-event-dispatcher",
+    "autoload": {
+        "psr-4": { "Rvdv\\LazyEventDispatcher\\": "src" }
+    },
+    "require": {
+        "symfony/event-dispatcher": "~2.8|~3.0"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}
