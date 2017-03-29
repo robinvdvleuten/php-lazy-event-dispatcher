@@ -35,6 +35,7 @@ Then add a custom compiler pass to have a new event listener type;
 
 namespace AppBundle;
 
+use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\EventDispatcher\DependencyInjection\RegisterListenersPass;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
@@ -47,7 +48,8 @@ class AppBundle extends Bundle
     public function build(ContainerBuilder $container)
     {
         $container->addCompilerPass(
-            new RegisterListenersPass('app.lazy_event_dispatcher', 'lazy.event_listener', 'lazy.event_subscriber')
+            new RegisterListenersPass('app.lazy_event_dispatcher', 'lazy.event_listener', 'lazy.event_subscriber'),
+            PassConfig::TYPE_BEFORE_REMOVING
         );
     }
 }
