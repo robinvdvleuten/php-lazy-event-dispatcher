@@ -67,7 +67,7 @@ class LazyEventDispatcher implements EventDispatcherInterface
             $this->lazy = false;
 
             while ($args = array_shift($this->queue)) {
-                call_user_func_array([$this, 'dispatch'], $args);
+                $this->dispatch(...$args);
             }
         }
     }
