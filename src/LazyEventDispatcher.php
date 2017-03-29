@@ -2,6 +2,7 @@
 
 namespace Rvdv\LazyEventDispatcher;
 
+use Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -33,6 +34,14 @@ class LazyEventDispatcher implements EventDispatcherInterface
         $this->dispatcher = $dispatcher;
         $this->queue = [];
         $this->lazy = true;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isContainerAware()
+    {
+        return $this->dispatcher instanceof ContainerAwareEventDispatcher;
     }
 
     /**
@@ -72,11 +81,36 @@ class LazyEventDispatcher implements EventDispatcherInterface
     }
 
     /**
+     * Adds a service as event listener.
+     *
+     * @param string $eventName
+     * @param array  $callback
+     * @param int    $priority
+     */
+    public function addListenerService($eventName, $callback, $priority = 0)
+    {
+        $this->assertDispatcherIsContainerAware();
+        $this->dispatcher->addListenerService($eventName, $callback, $priority);
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function addSubscriber(EventSubscriberInterface $subscriber)
     {
         $this->dispatcher->addSubscriber($subscriber);
+    }
+
+    /**
+     * Adds a service as event subscriber.
+     *
+     * @param string $serviceId
+     * @param string $class
+     */
+    public function addSubscriberService($serviceId, $class)
+    {
+        $this->assertDispatcherIsContainerAware();
+        $this->dispatcher->addSubscriberService($serviceId, $class);
     }
 
     /**
@@ -117,5 +151,15 @@ class LazyEventDispatcher implements EventDispatcherInterface
     public function hasListeners($eventName = null)
     {
         return $this->dispatcher->hasListeners($eventName);
+    }
+
+    /**
+     * @throws \LogicException when injected EventDispatcher instance is not container aware
+     */
+    private function assertDispatcherIsContainerAware()
+    {
+        if (!$this->isContainerAware()) {
+            throw new \LogicException('The injected EventDispatcher instance must be container aware.');
+        }
     }
 }
