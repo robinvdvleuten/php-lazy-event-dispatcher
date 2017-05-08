@@ -2,6 +2,8 @@
 
 An event dispatcher that holds any events until flushed.
 
+[![Build Status](https://travis-ci.org/robinvdvleuten/php-lazy-event-dispatcher.svg?branch=master)](https://travis-ci.org/robinvdvleuten/php-lazy-event-dispatcher)
+
 ## Use Case
 
 If you want to make use of the [kernel.terminate](http://symfony.com/doc/current/components/http_kernel.html#the-kernel-terminate-event) event to do some

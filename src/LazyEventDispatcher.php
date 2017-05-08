@@ -40,13 +40,9 @@ class LazyEventDispatcher implements EventDispatcherInterface
      */
     public function dispatch($eventName, Event $event = null)
     {
-        if ($this->lazy) {
-            $this->queue[] = [$eventName, $event];
+        $this->queue[] = [$eventName, $event];
 
-            return $event;
-        }
-
-        return $this->dispatcher->dispatch($eventName, $event);
+        return $event;
     }
 
     /**
@@ -58,8 +54,10 @@ class LazyEventDispatcher implements EventDispatcherInterface
             $this->lazy = false;
 
             while ($args = array_shift($this->queue)) {
-                $this->dispatch(...$args);
+                $this->dispatcher->dispatch(...$args);
             }
+
+            $this->lazy = true;
         }
     }
 
