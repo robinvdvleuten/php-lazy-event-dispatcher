@@ -13,7 +13,7 @@ listener you'll have support for any custom event classes.
 The recommended way to install the library is through [Composer](http://getcomposer.org).
 
 ```bash
-composer require robinvdvleuten/ulid
+composer require robinvdvleuten/lazy-event-dispatcher
 ```
 
 Install the listener as a service afterwards;
