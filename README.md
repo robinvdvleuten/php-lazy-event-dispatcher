@@ -2,6 +2,7 @@
 
 An event dispatcher that holds any events until flushed.
 
+[![Latest Stable Version](https://poser.pugx.org/robinvdvleuten/lazy-event-dispatcher/v/stable)](https://packagist.org/packages/robinvdvleuten/lazy-event-dispatcher)
 [![Build Status](https://travis-ci.org/robinvdvleuten/php-lazy-event-dispatcher.svg?branch=master)](https://travis-ci.org/robinvdvleuten/php-lazy-event-dispatcher)
 
 ## Use Case
