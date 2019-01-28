@@ -1,9 +1,10 @@
 <?php
 
-namespace Rvdv\LazyEventDispatcher;
+namespace Rvdv\LazyEventDispatcher\Tests;
 
+use PHPUnit\Framework\MockObject\MockObject as Mock;
 use PHPUnit\Framework\TestCase;
-use PHPUnit_Framework_MockObject_MockObject as Mock;
+use Rvdv\LazyEventDispatcher\LazyEventDispatcher;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
